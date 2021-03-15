@@ -76,6 +76,8 @@ class TextField extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
         this.props.addMessage(event.target.messageText.value, 'out');
+        // Clear input box
+        event.target.messageText.value = '';
     };
     
     render() {
