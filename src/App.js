@@ -2,9 +2,40 @@ import React from 'react';
 import UserSideBar from './UserSideBar';
 import ChatBar from './ChatBar'
 
+import socketIOClient from 'socket.io-client';
+import { ENDPOINT } from './data/config.json';
+
 export default class App extends React.Component {
     constructor(props) {
         super(props);
+
+        this.name = prompt("Enter Name: ");
+
+        // Create websocket that connects to server
+        this.socket = socketIOClient(ENDPOINT);
+        this.socket.on('connect', () => {
+            this.socket.emit("info", {name: this.name});
+        });
+
+        // Get user list from server
+        this.socket.on('usersArray', data => {
+            // Remove own instance of user
+            const users = data.filter(user => user.id !== this.socket.id);
+            
+            // Remove open_window if the user we were talking to left
+            if (!users.filter(user => user.id === this.state.open_chat).length) {
+                this.setOpenChat(null);
+            }
+
+            this.setUsers(users);
+        });
+
+        // Handle receiving messages
+        this.socket.on('receiveMessage', data => {
+            this.setOpenChat(data.id);
+            this.addMessage(data.messageText, 'in');
+        });
+
         this.state = {
             users: [
                 {
@@ -14,43 +45,8 @@ export default class App extends React.Component {
                     image: "http://simpleicon.com/wp-content/uploads/user1.png",
                     messages: [],
                 },
-                {
-                    id: 1,
-                    name: "Peter",
-                    status: "offline",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
-                    messages: [],
-                },
-                {
-                    id: 2,
-                    name: "Jeff",
-                    status: "online",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
-                    messages: [],
-                },
-                {
-                    id: 3,
-                    name: "Charlie",
-                    status: "online",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
-                    messages: [],
-                },
-                {
-                    id: 4,
-                    name: "Garnt",
-                    status: "online",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
-                    messages: [],
-                },
-                {
-                    id: 5,
-                    name: "Connor",
-                    status: "offline",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
-                    messages: [],
-                },
             ],
-            open_chat: 0,
+            open_chat: null,
         };
     }
 
@@ -61,7 +57,16 @@ export default class App extends React.Component {
     addMessage = (text, type) => {
         let users = this.state.users;
         users.filter(user => user.id === this.state.open_chat)[0].messages.push({text: text, type: type});
-        this.setState(users)
+        this.setState(users);
+
+        // Only send a message if it's an out message
+        if (type === 'out') {
+            this.socket.emit('sendMessage', {id: this.state.open_chat, messageText: text});
+        }
+    }
+
+    setUsers = (users) => {
+        this.setState({users: users});
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import shortid from 'shortid';
 
 export default class UserSideBar extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ export default class UserSideBar extends React.Component {
                 </div>
                 <div className='usersDiv'>
                     {users.map((item, i) => 
-                        <User user={item} openChatWindow={this.props.setOpenChat} key={item.id}/>
+                        <User user={item} openChatWindow={this.props.setOpenChat} key={shortid.generate()}/>
                     )}
                 </div>
                 
