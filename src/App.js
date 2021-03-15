@@ -11,37 +11,43 @@ export default class App extends React.Component {
                     id: 0,
                     name: "Thomas",
                     status: "online",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png"
+                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
+                    messages: [],
                 },
                 {
                     id: 1,
                     name: "Peter",
                     status: "offline",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png"
+                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
+                    messages: [],
                 },
                 {
                     id: 2,
                     name: "Jeff",
                     status: "online",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png"
+                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
+                    messages: [],
                 },
                 {
                     id: 3,
                     name: "Charlie",
                     status: "online",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png"
+                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
+                    messages: [],
                 },
                 {
                     id: 4,
                     name: "Garnt",
                     status: "online",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png"
+                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
+                    messages: [],
                 },
                 {
                     id: 5,
                     name: "Connor",
                     status: "offline",
-                    image: "http://simpleicon.com/wp-content/uploads/user1.png"
+                    image: "http://simpleicon.com/wp-content/uploads/user1.png",
+                    messages: [],
                 },
             ],
             open_chat: 0,
@@ -52,13 +58,19 @@ export default class App extends React.Component {
         this.setState({open_chat: id});
     }
 
+    addMessage = (text, type) => {
+        let users = this.state.users;
+        users.filter(user => user.id === this.state.open_chat)[0].messages.push({text: text, type: type});
+        this.setState(users)
+    }
+
     render() {
         const open_chat_user = this.state.open_chat !== null ? this.state.users.filter(user => user.id === this.state.open_chat) : null;
-
+        
         return (
             <div className='pannel'>
                 <UserSideBar users={this.state.users} setOpenChat={this.setOpenChat} />
-                <ChatBar open_chat_user={open_chat_user} setOpenChat={this.setOpenChat} />
+                <ChatBar open_chat_user={open_chat_user} setOpenChat={this.setOpenChat} addMessage={this.addMessage} />
             </div>
         );
     }

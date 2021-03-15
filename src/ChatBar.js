@@ -5,20 +5,6 @@ import shortid from 'shortid';
 
 export default class ChatBar extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            messages: []
-        };
-    }
-
-    addMessage = (text, type) => {
-        let messages = this.state.messages.slice();
-        messages.push({text: text, type: type});
-        this.setState({messages: messages});
-    };
-
     render() {
         const open_chat_user = this.props.open_chat_user;
         let drawOpenChat = open_chat_user !== null ? true : false;
@@ -35,8 +21,8 @@ export default class ChatBar extends React.Component {
             return (
                 <div className='chatBar'>
                     <TopBar open_chat_user={open_chat_user} closeWindow={this.props.setOpenChat}/>
-                    <MessagesField messages={this.state.messages}/>
-                    <TextField addMessage={this.addMessage} />
+                    <MessagesField messages={open_chat_user[0].messages}/>
+                    <TextField addMessage={this.props.addMessage} />
                 </div>
             );
 

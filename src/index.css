@@ -134,8 +134,7 @@ body {
 
 .outMessageDiv > p {
     color: white;
-    margin: 0;
-    margin-left: 0.25rem;
+    margin: 0 0.25rem 0 0.25rem;
 }
 
 .inMessageDiv {
@@ -149,8 +148,7 @@ body {
 
 .inMessage > p {
     color: white;
-    margin: 0;
-    margin-left: 0.25rem;
+    margin: 0 0.25rem 0 0.25rem;
 }
 
 /*----------------------------------------------------------*/
