@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/ReactMessage/static/css/main.0c651732.chunk.css",
+    "main.css": "/ReactMessage/static/css/main.8290d2da.chunk.css",
     "main.js": "/ReactMessage/static/js/main.eb2f2079.chunk.js",
     "main.js.map": "/ReactMessage/static/js/main.eb2f2079.chunk.js.map",
     "runtime-main.js": "/ReactMessage/static/js/runtime-main.ffb4fb68.js",
@@ -8,13 +8,13 @@
     "static/js/2.40773feb.chunk.js": "/ReactMessage/static/js/2.40773feb.chunk.js",
     "static/js/2.40773feb.chunk.js.map": "/ReactMessage/static/js/2.40773feb.chunk.js.map",
     "index.html": "/ReactMessage/index.html",
-    "static/css/main.0c651732.chunk.css.map": "/ReactMessage/static/css/main.0c651732.chunk.css.map",
+    "static/css/main.8290d2da.chunk.css.map": "/ReactMessage/static/css/main.8290d2da.chunk.css.map",
     "static/js/2.40773feb.chunk.js.LICENSE.txt": "/ReactMessage/static/js/2.40773feb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ffb4fb68.js",
     "static/js/2.40773feb.chunk.js",
-    "static/css/main.0c651732.chunk.css",
+    "static/css/main.8290d2da.chunk.css",
     "static/js/main.eb2f2079.chunk.js"
   ]
 }
