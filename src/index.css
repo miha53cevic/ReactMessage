@@ -142,7 +142,10 @@ body {
     border-radius: 1rem;
     padding: 0.25rem;
     width: fit-content;
-    align-self: flex-start;
+    align-self: flex-end;
+    margin: 0.25rem;
+
+    /* Word-wrap ne radi, al ovo dela :/ */
     word-break: normal;
 }
 
