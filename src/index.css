@@ -47,6 +47,7 @@ body {
 
 .usersDiv {
     overflow-y: scroll;
+    flex: 1;
 }
 
 .userDiv {
@@ -114,9 +115,46 @@ body {
 .messagesDiv {
     overflow-y: scroll;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.outMessageDiv {
+    background-color: green;
+    border-radius: 1rem;
+    padding: 0.25rem;
+    width: fit-content;
+    align-self: flex-end;
+    margin: 0.25rem;
+
+    /* Word-wrap ne radi, al ovo dela :/ */
+    word-break: normal;
+}
+
+.outMessageDiv > p {
+    color: white;
+    margin: 0;
+    margin-left: 0.25rem;
+}
+
+.inMessageDiv {
+    background-color: gray;
+    border-radius: 1rem;
+    padding: 0.25rem;
+    width: fit-content;
+    align-self: flex-start;
+    word-break: normal;
+}
+
+.inMessage > p {
+    color: white;
+    margin: 0;
+    margin-left: 0.25rem;
 }
 
 /*----------------------------------------------------------*/
+
 
 .textFieldDiv {
     display: flex;
@@ -133,3 +171,5 @@ body {
 .textFieldDiv > button:hover {
     cursor: pointer;
 }
+
+/*----------------------------------------------------------*/

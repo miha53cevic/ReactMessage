@@ -44,21 +44,21 @@ export default class App extends React.Component {
                     image: "http://simpleicon.com/wp-content/uploads/user1.png"
                 },
             ],
-            last_chat: 0,
+            open_chat: 0,
         };
     }
 
-    setLastChat = (id) => {
-        this.setState({last_chat: id});
+    setOpenChat = (id) => {
+        this.setState({open_chat: id});
     }
 
     render() {
-        const last_chat = this.state.last_chat !== null ? this.state.users.filter(user => user.id === this.state.last_chat) : null;
+        const open_chat_user = this.state.open_chat !== null ? this.state.users.filter(user => user.id === this.state.open_chat) : null;
 
         return (
             <div className='pannel'>
-                <UserSideBar users={this.state.users} setLastChat={this.setLastChat} />
-                <ChatBar last_chat_user={last_chat} setLastChat={this.setLastChat} />
+                <UserSideBar users={this.state.users} setOpenChat={this.setOpenChat} />
+                <ChatBar open_chat_user={open_chat_user} setOpenChat={this.setOpenChat} />
             </div>
         );
     }

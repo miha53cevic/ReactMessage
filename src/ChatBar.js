@@ -1,25 +1,42 @@
 import React from 'react';
 
+// Used for generating unique keys
+import shortid from 'shortid';
+
 export default class ChatBar extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            messages: []
+        };
+    }
+
+    addMessage = (text, type) => {
+        let messages = this.state.messages.slice();
+        messages.push({text: text, type: type});
+        this.setState({messages: messages});
+    };
+
     render() {
-        const last_chat_user = this.props.last_chat_user;
-        let drawLastChat = last_chat_user !== null ? true : false;
+        const open_chat_user = this.props.open_chat_user;
+        let drawOpenChat = open_chat_user !== null ? true : false;
         
         // Check for invalid last_chat id
-        if (drawLastChat && !last_chat_user.length) {
+        if (drawOpenChat && !open_chat_user.length) {
             console.error("Chat window with desired ID does not exist!");
-            drawLastChat = false;
+            drawOpenChat = false;
         }
 
         // Only draw if there is an id and if it's correct
-        if (drawLastChat) {
+        if (drawOpenChat) {
 
             return (
                 <div className='chatBar'>
-                    <TopBar last_chat_user={last_chat_user} closeWindow={this.props.setLastChat}/>
-                    <MessagesField />
-                    <TextField />
+                    <TopBar open_chat_user={open_chat_user} closeWindow={this.props.setOpenChat}/>
+                    <MessagesField messages={this.state.messages}/>
+                    <TextField addMessage={this.addMessage} />
                 </div>
             );
 
@@ -31,12 +48,12 @@ export default class ChatBar extends React.Component {
 
 class TopBar extends React.Component {
     render() {
-        const last_chat = this.props.last_chat_user[0];
+        const open_chat_user = this.props.open_chat_user[0];
 
         return (
             <div className="topBarDiv">
-                <img src={last_chat.image} alt="user_image"></img>
-                <h1>{last_chat.name}</h1>
+                <img src={open_chat_user.image} alt="user_image"></img>
+                <h1>{open_chat_user.name}</h1>
                 <button onClick={() => this.props.closeWindow(null)}>Exit</button>
             </div>
         );
@@ -47,31 +64,44 @@ class MessagesField extends React.Component {
     render() {
         return (
             <div className="messagesDiv">
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
-                <h1>MesagesField</h1>
+                {this.props.messages.map((element, index) =>
+                    <Message message={element} key={shortid.generate()}/>
+                )}
             </div>
         );
     }
 }
 
 class TextField extends React.Component {
+    onSubmit = (event) => {
+        event.preventDefault();
+        this.props.addMessage(event.target.messageText.value, 'out');
+    };
+    
     render() {
         return (
-            <div className='textFieldDiv'>
-                <input type='text'></input>
-                <button>Send</button>
+            <form className='textFieldDiv' onSubmit={this.onSubmit}>
+                <input name='messageText' type='text'></input>
+                <button type='submit'>Send</button>
+            </form>
+        );
+    }
+}
+
+class Message extends React.Component {
+
+    render() {
+        const message = this.props.message;
+
+        let messageType;
+        if (message.type === 'out') {
+            messageType = 'outMessageDiv';
+        } else if (message.type === 'in') {
+            messageType = 'inMessageDiv';
+        }
+        return (
+            <div className={messageType}>
+                <p>{message.text}</p>
             </div>
         );
     }

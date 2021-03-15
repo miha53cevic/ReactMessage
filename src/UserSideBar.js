@@ -23,9 +23,9 @@ export default class UserSideBar extends React.Component {
                     <SearchBar onChange={this.onChange}/>
                 </div>
                 <div className='usersDiv'>
-                    {users.map((item, i) => (
-                        <User user={item} openChatWindow={this.props.setLastChat} key={item.id}/>
-                    ))}
+                    {users.map((item, i) => 
+                        <User user={item} openChatWindow={this.props.setOpenChat} key={item.id}/>
+                    )}
                 </div>
                 
             </div>
