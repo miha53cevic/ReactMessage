@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/ReactMessage/static/css/main.8290d2da.chunk.css",
-    "main.js": "/ReactMessage/static/js/main.eb2f2079.chunk.js",
-    "main.js.map": "/ReactMessage/static/js/main.eb2f2079.chunk.js.map",
-    "runtime-main.js": "/ReactMessage/static/js/runtime-main.ffb4fb68.js",
-    "runtime-main.js.map": "/ReactMessage/static/js/runtime-main.ffb4fb68.js.map",
-    "static/js/2.40773feb.chunk.js": "/ReactMessage/static/js/2.40773feb.chunk.js",
-    "static/js/2.40773feb.chunk.js.map": "/ReactMessage/static/js/2.40773feb.chunk.js.map",
+    "main.css": "/ReactMessage/static/css/main.69aec255.chunk.css",
+    "main.js": "/ReactMessage/static/js/main.a2e0ea57.chunk.js",
+    "main.js.map": "/ReactMessage/static/js/main.a2e0ea57.chunk.js.map",
+    "runtime-main.js": "/ReactMessage/static/js/runtime-main.5a80a2c0.js",
+    "runtime-main.js.map": "/ReactMessage/static/js/runtime-main.5a80a2c0.js.map",
+    "static/js/2.4fd3de03.chunk.js": "/ReactMessage/static/js/2.4fd3de03.chunk.js",
+    "static/js/2.4fd3de03.chunk.js.map": "/ReactMessage/static/js/2.4fd3de03.chunk.js.map",
     "index.html": "/ReactMessage/index.html",
-    "static/css/main.8290d2da.chunk.css.map": "/ReactMessage/static/css/main.8290d2da.chunk.css.map",
-    "static/js/2.40773feb.chunk.js.LICENSE.txt": "/ReactMessage/static/js/2.40773feb.chunk.js.LICENSE.txt"
+    "static/css/main.69aec255.chunk.css.map": "/ReactMessage/static/css/main.69aec255.chunk.css.map",
+    "static/js/2.4fd3de03.chunk.js.LICENSE.txt": "/ReactMessage/static/js/2.4fd3de03.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ffb4fb68.js",
-    "static/js/2.40773feb.chunk.js",
-    "static/css/main.8290d2da.chunk.css",
-    "static/js/main.eb2f2079.chunk.js"
+    "static/js/runtime-main.5a80a2c0.js",
+    "static/js/2.4fd3de03.chunk.js",
+    "static/css/main.69aec255.chunk.css",
+    "static/js/main.a2e0ea57.chunk.js"
   ]
 }
