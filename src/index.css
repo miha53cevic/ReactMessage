@@ -11,7 +11,7 @@ body {
 
 .pannel {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1;
     height: 100vh;
 }
@@ -29,7 +29,7 @@ body {
     flex: 2;
     display: flex;
     flex-direction: column;
-    margin: 0 1rem 1rem 1rem
+    margin: 0 1rem 1rem 1rem;
 }
 
 /*----------------------------------------------------------*/
@@ -43,6 +43,13 @@ body {
 
 .searchBarDiv > input {
     flex: 1;
+    font-size: x-large;
+    border: 0;
+    border-bottom: 1px solid black;
+    outline: 0;
+    background-color: #414141;
+    color: white;
+    text-align: center;
 }
 
 .usersDiv {
@@ -102,8 +109,10 @@ body {
 }
 
 .topBarDiv > button {
-    margin: 3.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     margin-left: auto;
+    padding: 1rem;
 }
 
 .topBarDiv > button:hover {
@@ -127,9 +136,11 @@ body {
     width: fit-content;
     align-self: flex-end;
     margin: 0.25rem;
+    font-size: xx-large;
 
     /* Word-wrap ne radi, al ovo dela :/ */
     word-break: normal;
+
 }
 
 .outMessageDiv > p {
@@ -144,6 +155,7 @@ body {
     width: fit-content;
     align-self: flex-start;
     margin: 0.25rem;
+    font-size: xx-large;
 
     /* Word-wrap ne radi, al ovo dela :/ */
     word-break: normal;
@@ -174,3 +186,30 @@ body {
 }
 
 /*----------------------------------------------------------*/
+
+/* Desktop Layout */
+@media screen and (min-width: 640px) {
+
+    .pannel {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        height: 100vh;
+    }
+
+    .userSideBar {
+        background-color: #414141;
+        color: white;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chatBar {
+        background-color: white;
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        margin: 0 1rem 1rem 1rem;
+    }
+}
