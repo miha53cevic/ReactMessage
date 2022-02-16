@@ -25,7 +25,7 @@ function App() {
     const [openChatUser, setOpenChatUser] = useState<IUser | null>(null);
 
     useEffect(() => {
-        const name = `User${Math.random() * 10000}`;
+        const name = prompt("Enter username:");
 
         // Create websocket that connects to server
         const api = process.env.REACT_APP_API || "";
@@ -38,7 +38,7 @@ function App() {
         setSocket(socket);
 
         // Setup starting dummy users
-        const startUsers: IUser[] = [
+        /*const startUsers: IUser[] = [
             {
                 id: "0",
                 messages: [],
@@ -53,8 +53,7 @@ function App() {
                 name: "Marko",
                 status: 'offline',
             },
-        ];
-        setUsers(startUsers);
+        ];*/
     }, []);
 
     useEffect(() => {
@@ -65,21 +64,30 @@ function App() {
             // Remove own instance of user
             const newUsers = data.filter(user => user.id !== Socket.id);
 
-            // Remove open_window if the user we were talking to left
-            if (newUsers.filter(user => user.id === openChatUser?.id)[0] === undefined) {
-                closeChat();
+            // Remove open_window if the user we were talking to leftđ
+            if (openChatUser != null) {
+                if (!newUsers.some(user => user.id === openChatUser.id)) {
+                    closeChat();
+                }
             }
 
-            // Ako vec postoje useri samo dodaj nove koji su došli
+            // Ako vec postoje users samo dodaj nove koji su došli
             if (users) {
+                let updatedUsers = users;
+                // Prvo provjeri ako su neki users otišli (disconnect)
+                for (const i of users) {
+                    if (!newUsers.some(user => user.id === i.id))
+                        updatedUsers = users.filter(user => user.id !== i.id);
+                };
+
                 for (const i of newUsers) {
                     // Ako user ne postoji unutar users onda ga dodaj u users
-                    if (!users.some(user => user.id === i.id)) {
-                        users.push(i);
+                    if (!updatedUsers.some(user => user.id === i.id)) {
+                        updatedUsers.push(i);
                     }
                 };
-                setUsers(users);
-            } else setUsers(newUsers);  // Ako nemamo prijašnje user-e samo zamijeni trenutačnu vrijednost(null) s novim
+                setUsers([...updatedUsers]);
+            } else setUsers([...newUsers]);
         });
 
         // Handle receiving messages
