@@ -56,7 +56,6 @@ function UserSideBar({ users, openChat }: UserSideBarProps) {
 
     // Filter out only the users 
     React.useEffect(() => {
-        console.log(users);
         if (users == null) return;
         setUsersFiltered(users.filter(user => user.name.toLowerCase().includes(searchText)));
     }, [users, searchText]);
