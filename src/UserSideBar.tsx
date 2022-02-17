@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import shortid from 'shortid';
 
-import { IUser } from './App'
+import { IUser } from './useSocketIO'
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -48,13 +48,19 @@ interface UserSideBarProps {
 function UserSideBar({ users, openChat }: UserSideBarProps) {
     
     const [searchText, setSearchText] = useState<string>("");
+    const [usersFiltered, setUsersFiltered] = useState<IUser[] | undefined>(undefined);
 
     const onSearchChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setSearchText(e.target.value);
     };
 
     // Filter out only the users 
-    const usersFiltered = users?.filter(user => user.name.toLowerCase().includes(searchText));
+    React.useEffect(() => {
+        console.log(users);
+        if (users == null) return;
+        setUsersFiltered(users.filter(user => user.name.toLowerCase().includes(searchText)));
+    }, [users, searchText]);
+
 
     return (
         <div className='userSideBar'>

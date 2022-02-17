@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import shortid from 'shortid';
 
-import { IMessage, IUser } from './App';
+import { IMessage, IUser } from './useSocketIO';
 
 ///////////////////////////////////////////////////////////////////////////////
 
