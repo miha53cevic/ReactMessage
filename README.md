@@ -1,3 +1,3 @@
 # ReactMessage
 
-https://miha53cevic.github.io/ReactMessage/
+Made whilst learning react originaly with OOP classes later refactored to functions
